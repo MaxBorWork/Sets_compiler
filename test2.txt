@@ -1,0 +1,14 @@
+func main{
+element a = "a"
+element b = "b"
+element c = "c"
+element d = "d"
+set small = {a,b}
+set big = {a,b,c,d}
+if (small.size() > big.size()) {
+print("WRONG!")
+} else {
+getTest = small.get(1)
+print(getTest)
+}
+}

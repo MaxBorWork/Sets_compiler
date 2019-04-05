@@ -1,0 +1,9 @@
+func main{
+element a = "a"
+element b = "b"
+element c = "c"
+set a = {a,b}
+set b = {a,c}
+set sum = s+a
+print(sum)
+}
