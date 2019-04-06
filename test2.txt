@@ -8,7 +8,8 @@ set big = {a,b,c,d}
 if (small.size() > big.size()) {
 print("WRONG!")
 } else {
-getTest = small.get(1)
-print(getTest)
+small.add(c)
+element getTest = small.get(1)
+print(small)
 }
 }

@@ -1,7 +1,5 @@
 package by.borisevich.compiler.model;
 
-import java.util.Objects;
-
 //public class Element {
 //
 //    private final String data;

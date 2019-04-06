@@ -1,7 +1,8 @@
 package by.borisevich.compiler;
 
-import antlr.HelloLexer;
-import antlr.HelloParser;
+import by.borisevich.compiler.antlr.HelloLexer;
+import by.borisevich.compiler.antlr.HelloParser;
+
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -21,8 +22,8 @@ public class Main {
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             HelloParser parser = new HelloParser(tokens);
             ParseTree tree = parser.program();
-            SetVisitor walker = new SetVisitor();
-            String out = (String) walker.visit(tree);
+            SetVisitor visitor = new SetVisitor();
+            String out = (String) visitor.visit(tree);
             FileWriter fileWriter = new FileWriter("Program.java");
             fileWriter.write(out);
             fileWriter.close();

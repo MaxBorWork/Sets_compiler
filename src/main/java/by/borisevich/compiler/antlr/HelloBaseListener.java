@@ -1,5 +1,4 @@
-// Generated from /home/maksim/IdeaProjects/sets_compiler/src/main/java/antlr/Hello.g4 by ANTLR 4.7.2
-package antlr;
+package by.borisevich.compiler.antlr;// Generated from /home/maksim/IdeaProjects/sets_compiler/Hello.g4 by ANTLR 4.7.2
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -11,18 +10,6 @@ import org.antlr.v4.runtime.tree.TerminalNode;
  * of the available methods.
  */
 public class HelloBaseListener implements HelloListener {
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSetExpression(HelloParser.SetExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSetExpression(HelloParser.SetExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -323,6 +310,30 @@ public class HelloBaseListener implements HelloListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpression(HelloParser.ExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInitSetExpression(HelloParser.InitSetExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInitSetExpression(HelloParser.InitSetExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAddElement(HelloParser.AddElementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAddElement(HelloParser.AddElementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

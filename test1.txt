@@ -2,8 +2,8 @@ func main{
 element a = "a"
 element b = "b"
 element c = "c"
-set a = {a,b}
-set b = {a,c}
-set sum = s+a
+set set_a = {a,b}
+set set_b = {a,c}
+set sum = set_b+set_a
 print(sum)
 }

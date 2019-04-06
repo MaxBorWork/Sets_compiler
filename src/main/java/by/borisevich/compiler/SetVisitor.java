@@ -1,7 +1,6 @@
 package by.borisevich.compiler;
 
-import antlr.HelloBaseVisitor;
-import antlr.HelloParser;
+import by.borisevich.compiler.antlr.*;
 import by.borisevich.compiler.model.Variables;
 
 import javax.swing.*;
@@ -89,7 +88,7 @@ public class SetVisitor extends HelloBaseVisitor {
             "        return out;\n" +
             "    }\n" +
             "\n" +
-            "    public static Set intersection(Set a, Set b) {\n" +
+            "    public Set intersection(Set a, Set b) {\n" +
             "        Set out = new Set();\n" +
             "        for (Element el : a.set) {\n" +
             "            if (b.set.contains(el)) {\n" +
@@ -104,7 +103,7 @@ public class SetVisitor extends HelloBaseVisitor {
             "        return out;\n" +
             "    }\n" +
             "\n" +
-            "    public static Set diff(Set a, Set b) {\n" +
+            "    public Set diff(Set a, Set b) {\n" +
             "        Set out = new Set();\n" +
             "        out.set.addAll(a.set);\n" +
             "        for (Element el : b.set) {\n" +
@@ -150,10 +149,10 @@ public class SetVisitor extends HelloBaseVisitor {
             "    private void start() throws Exception ";
 
     @Override
-    public String visitSetExpression(HelloParser.SetExpressionContext ctx) {
+    public String visitInitSetExpression(HelloParser.InitSetExpressionContext ctx) {
         for (int i = 0; i < ctx.NAME().size(); i++) {
             if (variables.get(ctx.NAME(i).getText()) == null)
-                errors.add("Initialize error: Variable " + ctx.NAME(i).getText() + " not initialize");
+                errors.add("Initialize error: Variable " + ctx.NAME(i).getText() + " has not been initialized");
             else if (!variables.get(ctx.NAME(i).getText()).equalsIgnoreCase("element"))
                 errors.add("Cast error:  variable " + ctx.NAME(i).getText() + " is not element");
         }
@@ -447,11 +446,11 @@ public class SetVisitor extends HelloBaseVisitor {
                 errors.add("Calculate error: variable " + ctx.NAME(0).getText() + " is element " +
                         " and " + variables.get(ctx.NAME(1).getText()) + " is set");
         }
-        if (ctx.setExpression() != null)
-            return "new Set(new Element[]" + visitSetExpression(ctx.setExpression()) + ")";
+        if (ctx.initSetExpression() != null)
+            return "new Set(new Element[]" + visitInitSetExpression(ctx.initSetExpression()) + ")";
         if (ctx.PLUS() != null) {
             if (variables.get(ctx.getChild(0).getText()).equalsIgnoreCase("set") && variables.get(ctx.getChild(2).getText()).equalsIgnoreCase("set"))
-                return "union(" + ctx.getChild(0).getText() + ", " + ctx.getChild(2).getText() + ")";
+                return "new Set().union(" + ctx.getChild(0).getText() + ", " + ctx.getChild(2).getText() + ")";
         }
         if (ctx.MINUS() != null) {
             if (variables.get(ctx.getChild(0).getText()).equalsIgnoreCase("set") && variables.get(ctx.getChild(2).getText()).equalsIgnoreCase("set"))
@@ -485,6 +484,8 @@ public class SetVisitor extends HelloBaseVisitor {
             return visitFunctionCall(ctx.functionCall()) + ";";
         else if (ctx.whileBlock() != null)
             return visitWhileBlock(ctx.whileBlock());
+        else if (ctx.addElement() != null)
+            return visitAddElement(ctx.addElement());
         else if (ctx.ifBlock() != null)
             return visitIfBlock(ctx.ifBlock());
         else if (ctx.declarationElement() != null)
@@ -492,25 +493,10 @@ public class SetVisitor extends HelloBaseVisitor {
         else return "";
     }
 
-//    @Override
-//    public String visit(ParseTree parseTree) {
-//        return null;
-//    }
-//
-//    @Override
-//    public String visitChildren(RuleNode ruleNode) {
-//        return null;
-//    }
-//
-//    @Override
-//    public String visitTerminal(TerminalNode terminalNode) {
-//        return null;
-//    }
-//
-//    @Override
-//    public String visitErrorNode(ErrorNode errorNode) {
-//        return null;
-//    }
+    @Override
+    public String visitAddElement(HelloParser.AddElementContext ctx) {
+        return ctx.getText() + ";";
+    }
 
     private boolean checkSignatures(HelloParser.InputSignatureContext in, HelloParser.SignatureFunctionContext sig) {
         boolean check = true;

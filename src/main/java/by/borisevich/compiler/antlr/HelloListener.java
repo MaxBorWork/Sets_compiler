@@ -1,5 +1,4 @@
-// Generated from /home/maksim/IdeaProjects/sets_compiler/src/main/java/by/borisevich/compiler/antlr/Hello.g4 by ANTLR 4.7.2
-package by.borisevich.compiler.antlr;
+package by.borisevich.compiler.antlr;// Generated from /home/maksim/IdeaProjects/sets_compiler/Hello.g4 by ANTLR 4.7.2
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**

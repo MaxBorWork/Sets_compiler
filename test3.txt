@@ -3,12 +3,20 @@ element a = "a"
 element b = "b"
 element c = "c"
 element d = "d"
+element e = "e"
+element f = "f"
 set small = {a,b}
-set big = {a,b,c,d}
-if (small.size() > big.size()) {
-print("WRONG!"))
-} else {
-small = small.add(d)
+set big = {a,b,c}
+while (small.size() != big.size()) {
+element x = big.get(2)
+small.add(x)
+printMessage(x)
+}
 print(small)
 }
+
+func printMessage(element el) {
+print("Added element ")
+print(el)
+return
 }
